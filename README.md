@@ -1,327 +1,353 @@
-# ML-NEURL
+# NEURL Engine
+## AI-Native Node Intelligence Foundation Model
 
-**Node Enhanced Universal Reasoning Layer**
+**Version:** 1.0.0  
+**Architecture:** Multi-Task Graph Neural Network with Self-Supervised Node Intelligence  
+**Compute:** CPU / CUDA (auto-detected)  
+**Dependencies:** PyTorch, PyTorch Geometric, NetworkX, scikit-learn, Plotly  
+**License:** Proprietary
 
-ML-NEURL is an AI-native machine learning framework for transforming structured enterprise datasets into clean, semantically meaningful knowledge graphs without relying on Large Language Models or prompt engineering.
+---
 
-Instead of using external AI services to infer entities and relationships, ML-NEURL learns graph structures directly from data through representation learning, graph neural networks, and self-supervised graph intelligence. The framework is designed as a reusable foundation model for structured business intelligence, enabling scalable graph construction, node understanding, relationship prediction, and knowledge discovery.
+## Overview
 
-## Vision
+NEURL Engine is a production-grade machine learning system that automatically converts structured datasets into clean, meaningful, interactive knowledge graphs using learned machine intelligence rather than large language model prompting.
 
-Structured datasets already contain hidden knowledge.
+The system eliminates every dependency on external AI services (Gemini, GPT, Claude) by replacing prompt-based graph generation with trained neural representations. Every capability the existing GraphAPI, TableAPI, and document understanding API delegate to Gemini is instead performed by NEURL Engine's learned models.
 
-ML-NEURL learns to discover that knowledge by identifying entities, inferring relationships, constructing optimized knowledge graphs, and learning semantic representations that improve over time.
+The core innovation is Node Intelligence: the ability to learn which columns in a dataset deserve to become nodes in a knowledge graph, and how those nodes relate to each other, purely from structural and statistical patterns in the data.
 
-The project aims to become a foundation model for enterprise graph intelligence, replacing rule-based systems and LLM-assisted graph generation with a fully trainable machine learning architecture.
-
-## Core Objectives
-
-- Automatically discover business entities from structured datasets
-- Learn semantic relationships between entities
-- Construct clean and optimized knowledge graphs
-- Generate high-quality node and graph embeddings
-- Predict missing relationships and incomplete workflows
-- Detect anomalies and disconnected business processes
-- Learn reusable graph representations across multiple domains
-- Continuously improve as additional datasets are processed
+---
 
 ## Design Philosophy
 
-ML-NEURL is built around a single principle:
+Traditional graph generation systems ask a language model:
 
-> Every structured dataset is a graph waiting to be discovered.
+    "Find the entities in this dataset."
+    "Find the relationships between these columns."
 
-Rather than treating datasets as independent tables, ML-NEURL interprets them as interconnected systems of entities, relationships, and workflows.
+NEURL Engine instead trains a model to recognize the answer directly from data patterns. The intelligence lives in learned weights, not in prompts.
 
-The framework focuses on learning graph structure directly from data instead of relying on manually engineered rules or prompt-based reasoning.
+This produces:
+
+- Deterministic, reproducible outputs
+- Zero inference cost per query after training
+- No vendor lock-in or API rate limits
+- No hallucinations
+- Scalable batch processing
+- Continuously improving representations
+
+---
 
 ## Architecture
 
 ```
-                 Raw Dataset
-                      │
-                      ▼
-              Data Validation
-                      │
-                      ▼
-              Feature Engineering
-                      │
-                      ▼
-              Schema Understanding
-                      │
-                      ▼
-              Node Intelligence
-                      │
-                      ▼
-         Relationship Intelligence
-                      │
-                      ▼
-          Knowledge Graph Builder
-                      │
-                      ▼
-         Graph Representation Learning
-                      │
-                      ▼
-          Graph Neural Networks
-                      │
-                      ▼
-           Embedding Generation
-                      │
-                      ▼
-          Prediction and Inference
-                      │
-                      ▼
-       Interactive Knowledge Graph
+Raw Dataset (CSV / JSON / Parquet / Excel / XML / JSONL)
+       |
+       v
++------------------+
+| Data Ingestion   |  Cell 2 -- Universal loader, type inference, schema detection
+| and Validation   |  Formats: CSV, JSON, Parquet, Excel, JSONL, XML, SQL exports
++------------------+
+       |
+       v
++------------------+
+| Feature          |  Cell 3 -- Per-column statistical, linguistic, structural features
+| Engineering      |  Outputs: column metadata vectors, TF-IDF similarity matrix,
+|                  |           value overlap matrix, temporal and frequency features
++------------------+
+       |
+       v
++------------------+
+| Node Intelligence|  Cell 4 -- CORE INNOVATION
+| Engine           |  Hierarchical clustering over column feature vectors
+|                  |  Groups: Customer Name + Email + Phone -> Customer Node
+|                  |          Invoice Number + Date + Amount -> Invoice Node
+|                  |  Output: EntitySchema list with confidence scores
++------------------+
+       |
+       v
++------------------+
+| Relationship     |  Cell 5 -- Directed relationship discovery
+| Intelligence     |  Evidence: foreign key patterns, naming conventions,
+|                  |            numeric correlation, temporal ordering
+|                  |  Output: RelationshipSchema list with cardinality labels
++------------------+
+       |
+       v
++------------------+
+| Knowledge Graph  |  Cell 6 -- NetworkX dual-level graph construction
+| Construction     |  Schema layer: entity nodes + relationship edges
+|                  |  Instance layer: sampled data rows as instance nodes
+|                  |  Operations: deduplication, community detection (Louvain),
+|                  |              hierarchy generation, topology validation
++------------------+
+       |
+       v
++------------------+
+| GNN Architecture |  Cell 7 -- Five interchangeable architectures
+| Suite            |  GCN: spectral convolution, fast, homogeneous graphs
+|                  |  GraphSAGE: inductive, scales to unseen nodes
+|                  |  GAT: attention-weighted message passing
+|                  |  GIN: maximally expressive (WL-equivalent)
+|                  |  VGAE: variational autoencoder for link prediction
++------------------+
+       |
+       v
++------------------+
+| Multi-Task       |  Cell 8 -- End-to-end training framework
+| Training         |  Loss: link prediction + reconstruction + KL + InfoNCE
+|                  |  Features: AdamW, cosine LR schedule, gradient clipping,
+|                  |            mixed precision (AMP), early stopping,
+|                  |            checkpointing, experiment tracking
++------------------+
+       |
+       v
++------------------+
+| Inference and    |  Cell 9 -- Full inference pipeline
+| Explainability   |  Outputs: node embeddings, link predictions, anomaly scores,
+|                  |           community assignments, business intelligence report,
+|                  |           node importance rankings, attention maps
++------------------+
+       |
+       v
++------------------+
+| Visualization    |  Cell 10 -- Interactive Plotly charts
+| and Export       |  Charts: knowledge graph, UMAP embedding space,
+|                  |          training metrics, entity heatmap, BI dashboard
+|                  |  Exports: JSON, GraphML, Cytoscape.js, Markdown report
++------------------+
+       |
+       v
+Visualization-Ready Knowledge Graph + Business Intelligence Report
 ```
 
-## Supported Data Sources
+---
 
-ML-NEURL is designed to learn from a wide range of structured and semi-structured datasets, including:
+## Cell Reference
 
-- CSV
-- Excel
-- JSON
-- JSONL
-- Parquet
-- SQL exports
-- ERP datasets
-- CRM datasets
-- Business logs
-- Knowledge graphs
-- Relational databases
+| Cell | Name | Responsibility |
+|------|------|----------------|
+| 1 | Configuration and System Bootstrap | Central config dataclasses, logging, device management, enums, experiment tracker, model registry |
+| 2 | Universal Data Ingestion and Validation | Multi-format loader, type inference, data quality checks, schema metadata extraction |
+| 3 | Feature Engineering | Per-column feature vectors, TF-IDF name embeddings, similarity matrix, value overlap, entropy computation |
+| 4 | Node Intelligence Engine | Semantic column clustering, entity schema discovery, confidence scoring, entity type labeling |
+| 5 | Relationship Intelligence | Foreign key detection, naming convention analysis, correlation scoring, directed relationship schema |
+| 6 | Knowledge Graph Construction | NetworkX graph assembly, community detection, hierarchy computation, PyG data conversion |
+| 7 | GNN Architecture Suite | GCN, GraphSAGE, GAT, GIN, VGAE implementations with shared interface and model factory |
+| 8 | Multi-Task Training Pipeline | Mini-batch GNN training, multi-component loss, checkpointing, early stopping, metrics tracking |
+| 9 | Inference, Explainability and Business Intelligence | Embedding extraction, link prediction, anomaly detection, BI report generation |
+| 10 | Visualization and Graph Export | Interactive Plotly charts, UMAP projection, multi-format graph export |
 
-## Machine Learning Pipeline
+---
 
-The framework implements a complete graph learning workflow.
-
-1. Dataset ingestion
-2. Data preprocessing
-3. Schema detection
-4. Semantic feature extraction
-5. Entity discovery
-6. Relationship learning
-7. Knowledge graph construction
-8. Graph optimization
-9. Representation learning
-10. Model training
-11. Graph inference
-12. Business intelligence
-
-## Graph Intelligence
-
-ML-NEURL focuses on understanding graph semantics rather than simply converting columns into nodes.
-
-The framework learns to:
-
-- Discover meaningful entities
-- Merge semantically related attributes
-- Infer hidden relationships
-- Remove graph noise
-- Simplify graph topology
-- Generate hierarchical graph structures
-- Rank important nodes
-- Detect graph communities
-- Predict missing graph connections
-
-## Learning Tasks
-
-ML-NEURL supports multi-task graph learning, including:
-
-- Entity discovery
-- Relationship prediction
-- Node classification
-- Edge classification
-- Link prediction
-- Graph classification
-- Community detection
-- Knowledge graph completion
-- Business workflow prediction
-- Anomaly detection
-
-## Neural Architectures
-
-The framework supports interchangeable graph learning models, including:
-
-- Graph Convolutional Networks (GCN)
-- GraphSAGE
-- Graph Attention Networks (GAT)
-- Graph Isomorphism Networks (GIN)
-- Relational Graph Convolutional Networks (R-GCN)
-- Graph Transformers
-- Graph Autoencoders
-- Variational Graph Autoencoders
-- Node2Vec
-- DeepWalk
-- Contrastive Graph Learning
-- Self-Supervised Graph Learning
-
-## Node Intelligence
-
-Node Intelligence is the defining capability of ML-NEURL.
-
-Instead of representing every dataset column as an individual node, the framework learns semantic abstractions.
-
-For example:
+## Data Processing Pipeline
 
 ```
-Customer Name
-Customer Email
-Customer Phone
-Customer Address
+Dataset Upload
+    |
+    v
+Data Validation        -- schema checks, format detection, null audit
+    |
+    v
+Cleaning               -- drop constant columns, handle missing values, deduplicate
+    |
+    v
+Type Inference         -- numeric, categorical, datetime, text, identifier detection
+    |
+    v
+Feature Engineering    -- statistical, linguistic, structural features per column
+    |
+    v
+Semantic Grouping      -- TF-IDF column name similarity + hierarchical clustering
+    |
+    v
+Entity Discovery       -- column groups become entity schemas with confidence scores
+    |
+    v
+Relationship Learning  -- FK patterns, correlation, naming conventions -> edges
+    |
+    v
+Graph Construction     -- NetworkX schema + instance graph, community detection
+    |
+    v
+GNN Encoding           -- message passing over graph, node embeddings
+    |
+    v
+Multi-Task Training    -- link prediction, reconstruction, contrastive learning
+    |
+    v
+Inference              -- embeddings, predictions, anomaly scores, BI report
+    |
+    v
+Visualization          -- interactive Plotly graph + UMAP + export
 ```
 
-becomes
+---
+
+## Supported Input Formats
+
+- CSV (comma-separated values)
+- Excel (.xlsx, .xls via openpyxl)
+- JSON (records, list, or dict orientations)
+- JSONL (newline-delimited JSON)
+- Parquet (Apache Arrow columnar)
+- XML (auto-parsed to tabular form)
+- SQL exports (treated as CSV)
+- ERP exports, CRM exports, business logs
+
+---
+
+## Machine Learning Architectures
+
+### Graph Convolutional Network (GCN)
+Spectral-domain convolution over the normalized graph Laplacian. Fast training,
+strong performance on homogeneous graphs with consistent node degree distributions.
+
+### GraphSAGE
+Inductive representation learning via neighborhood sampling and aggregation.
+Generalizes to nodes unseen during training, making it suitable for streaming
+datasets where new entities arrive continuously.
+
+### Graph Attention Network (GAT)
+Multi-head attention mechanism assigns learned importance weights to each
+neighbor during message passing. Preferred when relationship strength is
+heterogeneous across the graph.
+
+### Graph Isomorphism Network (GIN)
+Provably as expressive as the Weisfeiler-Lehman graph isomorphism test.
+Theoretically the most powerful architecture in this suite for distinguishing
+structurally distinct subgraphs.
+
+### Variational Graph Autoencoder (VGAE)
+Generative model that learns a latent Gaussian distribution over node
+representations. Optimal for link prediction tasks including knowledge graph
+completion and missing relationship discovery.
+
+---
+
+## Multi-Task Learning Objectives
+
+The training pipeline simultaneously optimizes:
+
+- **Entity Discovery**: learn which columns form coherent semantic groups
+- **Relationship Discovery**: learn which entity pairs share meaningful connections
+- **Node Classification**: classify nodes into business entity type categories
+- **Link Prediction**: predict missing edges in the knowledge graph
+- **Graph Reconstruction**: reconstruct adjacency from embeddings (autoencoder objective)
+- **Anomaly Detection**: score nodes by deviation from learned neighborhood distributions
+- **Community Detection**: unsupervised clustering of semantically related nodes
+
+---
+
+## Loss Function Components
+
+| Loss | Symbol | Purpose |
+|------|--------|---------|
+| Link Prediction | L_lp | Binary cross-entropy over positive and negative edges |
+| Graph Reconstruction | L_recon | MSE between predicted and actual adjacency |
+| KL Divergence | L_kl | Variational regularization for VGAE latent space |
+| InfoNCE Contrastive | L_nce | Self-supervised alignment of semantically similar nodes |
+| Total | L_total | w1 * L_lp + w2 * L_recon + w3 * L_kl + w4 * L_nce |
+
+---
+
+## Evaluation Metrics
+
+**Link Prediction:** ROC-AUC, Average Precision, Hits@K, MRR  
+**Node Classification:** Accuracy, F1 (macro), Precision, Recall  
+**Clustering Quality:** Silhouette Score, Modularity  
+**Graph Quality:** Graph Reconstruction Accuracy, Connected Component Ratio  
+**System:** Training Throughput (samples/sec), Inference Latency (ms), Memory (MB)
+
+---
+
+## Business Intelligence Outputs
+
+After inference the engine produces a structured business intelligence report containing:
+
+- Entity inventory with confidence scores and semantic type labels
+- Directed relationship map with cardinality (1:1, 1:N, N:N)
+- Central node ranking (most influential entities by graph centrality)
+- Anomaly scores for outlier detection (fraud, data quality issues)
+- Community structure (natural business process groupings)
+- Link prediction candidates (missing relationships the model expects to exist)
+- Embedding quality metrics (silhouette, explained variance)
+
+---
+
+## Engineering Standards
+
+- Object-oriented design with abstract base classes and factory pattern
+- Full type hints on all public interfaces
+- Google-style docstrings on all classes and methods
+- Configuration-driven design via NEURLConfig dataclass hierarchy
+- Structured exception hierarchy (NEURLBaseError subclasses)
+- Structured logging with per-module loggers and file handlers
+- Experiment tracking with JSON artifact storage
+- Model registry with checkpoint management and version tagging
+- Graceful dependency degradation: scipy, sklearn, umap, louvain all optional with numpy fallbacks
+
+---
+
+## Quick Start
+
+```python
+# Bootstrap the engine
+neurl_config = NEURLConfig()
+logger, device, tracker, registry = bootstrap_neurl_engine(neurl_config)
+
+# Ingest a dataset
+ingestion_engine = DataIngestionEngine(neurl_config.data_ingestion)
+dataset = ingestion_engine.ingest_from_synthetic(n_rows=500)
+
+# Discover entities
+feature_engine = ColumnFeatureEngineer(neurl_config.feature_engineering)
+feature_matrix = feature_engine.build_feature_matrix(dataset.dataframe)
+
+node_engine = NodeIntelligenceEngine(neurl_config.feature_engineering)
+entity_schemas = node_engine.discover_entities(dataset.dataframe)
+
+# Discover relationships
+rel_engine = RelationshipIntelligenceEngine(neurl_config.graph_construction)
+relationship_schemas = rel_engine.discover_relationships(dataset.dataframe, entity_schemas)
+
+# Build and train
+graph_engine = KnowledgeGraphEngine(neurl_config.graph_construction)
+neurl_graph = graph_engine.build_graph(dataset.dataframe, entity_schemas, relationship_schemas)
+
+trainer = NEURLTrainer(neurl_config.training, neurl_config.loss_weights)
+trained_model, metrics = trainer.train(neurl_graph.pyg_data)
+
+# Run inference
+inference_engine = NEURLInferenceEngine(neurl_config.inference)
+results = inference_engine.run(trained_model, neurl_graph)
+
+# Visualize
+viz_engine = NEURLVisualizationEngine(neurl_config.output)
+viz_engine.render_all(neurl_graph, results)
+```
+
+---
+
+## Repository Structure (Notebook Cells)
 
 ```
-Customer
+NEURL Engine Notebook
+|
+|-- [MARKDOWN]  README                          (this block)
+|-- [PYTHON]    Cell 1: Configuration           NEURLConfig, enums, exceptions, bootstrap
+|-- [PYTHON]    Cell 2: Data Ingestion          DataIngestionEngine, DatasetMetadata
+|-- [PYTHON]    Cell 3: Feature Engineering     ColumnFeatureEngineer, feature vectors
+|-- [PYTHON]    Cell 4: Node Intelligence       NodeIntelligenceEngine, EntitySchema
+|-- [PYTHON]    Cell 5: Relationship Intel      RelationshipIntelligenceEngine, RelationshipSchema
+|-- [PYTHON]    Cell 6: Graph Construction      KnowledgeGraphEngine, NEURLGraph
+|-- [PYTHON]    Cell 7: GNN Architecture Suite  BaseGNN, GCNEncoder, SAGEEncoder, GATEncoder, GINEncoder, VGAEEncoder
+|-- [PYTHON]    Cell 8: Training Pipeline       NEURLTrainer, TrainingResult, loss components
+|-- [PYTHON]    Cell 9: Inference               NEURLInferenceEngine, InferenceResult, BI report
+|-- [PYTHON]    Cell 10: Visualization          NEURLVisualizationEngine, graph export
 ```
 
-Similarly,
+---
 
-```
-Invoice Number
-Invoice Date
-Invoice Amount
-```
-
-becomes
-
-```
-Invoice
-```
-
-This produces significantly cleaner and more meaningful knowledge graphs.
-
-## Relationship Intelligence
-
-After learning nodes, ML-NEURL predicts semantic relationships such as:
-
-```
-Customer
-    │
-    ▼
-Order
-    │
-    ▼
-Payment
-    │
-    ▼
-Invoice
-    │
-    ▼
-Journal Entry
-```
-
-Relationships are learned from structural and statistical patterns instead of predefined business rules.
-
-## Explainability
-
-ML-NEURL includes explainable AI techniques for graph learning.
-
-Capabilities include:
-
-- Node importance
-- Edge importance
-- Attention visualization
-- Feature importance
-- Confidence estimation
-- Subgraph explanations
-- Business reasoning reports
-
-## Production Features
-
-- Modular architecture
-- Configuration-driven training
-- Mixed precision support
-- Distributed training
-- Automatic checkpointing
-- Experiment tracking
-- Model versioning
-- Incremental learning
-- Continual learning
-- ONNX export
-- TorchScript export
-- FastAPI deployment
-- Enterprise logging
-
-## Repository Structure
-
-```
-ML-NEURL/
-
-├── notebooks/
-├── datasets/
-├── models/
-├── training/
-├── inference/
-├── graph/
-├── embeddings/
-├── explainability/
-├── visualization/
-├── api/
-├── configs/
-├── checkpoints/
-├── exports/
-├── utils/
-├── tests/
-├── requirements.txt
-└── README.md
-```
-
-## Technology Stack
-
-- Python
-- PyTorch
-- PyTorch Geometric
-- DGL
-- NetworkX
-- NumPy
-- Pandas
-- Scikit-learn
-- Optuna
-- MLflow
-- FastAPI
-- Plotly
-- ONNX
-
-## Roadmap
-
-### Phase 1
-
-- Data ingestion
-- Graph construction
-- Entity learning
-- Relationship learning
-
-### Phase 2
-
-- Graph neural networks
-- Representation learning
-- Link prediction
-- Node embeddings
-
-### Phase 3
-
-- Continual learning
-- Self-supervised graph learning
-- Graph transformers
-- Large-scale graph optimization
-
-### Phase 4
-
-- Enterprise deployment
-- Distributed inference
-- Multi-domain foundation model
-- Production graph intelligence platform
-
-## Long-Term Vision
-
-ML-NEURL is designed to become a reusable Graph Foundation Model for enterprise intelligence.
-
-Its long-term objective is to autonomously understand structured datasets, discover semantic entities, construct optimized knowledge graphs, and learn reusable representations that continuously improve as additional data becomes available.
-
-Rather than acting as a conversational AI system, ML-NEURL serves as the intelligence layer for graph-native analytics, enabling scalable knowledge discovery, business process understanding, and explainable graph reasoning across enterprise domains.
-
-## License
-
-This project is released under the MIT License.
+*NEURL Engine is a proprietary AI-native system. All graph intelligence is derived from learned representations, not language model prompting.*

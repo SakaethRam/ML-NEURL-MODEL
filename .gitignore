@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Training and export artifacts
+output/
+*.pt
+*.pth
+checkpoints/
+*.graphml
+*.html
+
+# OS/editor cruft
+.DS_Store
+.vscode/
+.idea/

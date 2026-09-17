@@ -1,0 +1,14 @@
+version: "3.9"
+
+# CPU service by default. For GPU, build/run Dockerfile.gpu directly
+# with `docker run --gpus all` — Compose's GPU device syntax varies by
+# Docker version, so it's kept out of this default file.
+
+services:
+  neurl:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python example_end_to_end.py
+    volumes:
+      - "./output:/app/output"

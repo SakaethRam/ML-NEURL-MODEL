@@ -7,6 +7,8 @@
 **Dependencies:** PyTorch, PyTorch Geometric, NetworkX, scikit-learn, Plotly  
 **License:** Proprietary
 
+<img width="1800" height="1000" alt="ZREX NEURL" src="https://github.com/user-attachments/assets/580503a1-1985-4e40-b08a-c708f42ee1e2" />
+
 ---
 
 ## Overview
@@ -351,3 +353,9 @@ NEURL Engine Notebook
 ---
 
 *NEURL Engine is a proprietary AI-native system. All graph intelligence is derived from learned representations, not language model prompting.*
+
+---
+
+# License
+
+ML-NEURL is distributed under the terms defined in `LICENSE`.
